@@ -1,0 +1,38 @@
+name: Sync Stake source
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout destination
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Copy source repository
+        shell: bash
+        run: |
+          set -e
+          rm -rf /tmp/stake-source
+          git clone --depth 1 https://github.com/tanh1c/stake-originals-clone.git /tmp/stake-source
+          rsync -a --delete --exclude='.git/' --exclude='.github/workflows/sync-source.yml' /tmp/stake-source/ ./
+
+      - name: Commit copied files
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Copy all files from tanh1c/stake-originals-clone"
+          git push
