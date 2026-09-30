@@ -13,7 +13,7 @@ function ThemedApp() {
 
     return (
         <ConfigProvider theme={antdTheme}>
-            <HashRouter basename="/Stake">
+            <HashRouter>
                 <WalletProvider>
                     <App />
                 </WalletProvider>
