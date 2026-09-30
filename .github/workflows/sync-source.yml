@@ -1,7 +1,6 @@
 name: Sync Stake source
 
 on:
-  push:
   workflow_dispatch:
 
 permissions:
