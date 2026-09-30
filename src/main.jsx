@@ -13,7 +13,7 @@ function ThemedApp() {
 
     return (
         <ConfigProvider theme={antdTheme}>
-            <BrowserRouter>
+            <BrowserRouter basename="/Stake">
                 <WalletProvider>
                     <App />
                 </WalletProvider>
