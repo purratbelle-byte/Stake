@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider, useThemeSettings } from './context/ThemeContext'
@@ -13,11 +13,11 @@ function ThemedApp() {
 
     return (
         <ConfigProvider theme={antdTheme}>
-            <BrowserRouter basename="/Stake">
+            <HashRouter basename="/Stake">
                 <WalletProvider>
                     <App />
                 </WalletProvider>
-            </BrowserRouter>
+            </HashRouter>
         </ConfigProvider>
     )
 }
