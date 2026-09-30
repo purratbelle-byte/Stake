@@ -27,6 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 
 export default defineConfig({
+    base: '/Stake/',
     plugins: [react(), googleTagManager],
     resolve: {
         alias: {
